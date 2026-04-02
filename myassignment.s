@@ -16,6 +16,9 @@ num_elements: .word 5
 
 #...to here---
 
+sum_text: .string "Sum: "
+newline: .string "\n"
+
 .text
 
 main:
@@ -40,7 +43,16 @@ add s0, s0, t2
 add s0, s0, t3
 add s0, s0, t4
 
+la a0, sum_text
+print_string
 
+mv a0, s0
+print_int
+
+la a0, newline
+print_string
+
+ecall
 done:
 
  li a7, 10
