@@ -18,7 +18,9 @@ num_elements: .word 5
 
 sum_text: .string "Sum: "
 newline: .string "\n"
-
+countpost_text: .string "Count positive: "
+max_text: .string "Max: "
+min_text: .string "Min"
 .text
 
 main:
@@ -94,8 +96,48 @@ add s1,s1,s2
 ecall
 jump6:
 
-mv a0, s1
+#prints final addition
+la a0, sum_text
+print_string
+
+mv a0,s1
 print_int
+
+la a0, newline
+print_string
+
+#set max value to first element
+mv s3,t0
+#if the first element is less than the current element skip to jump 7
+blt t1,s3, jump7
+#otherwise change the current max to element 2
+mv s3, t1 
+
+jump7:
+blt t2,s3,jump8
+mv s3, t2
+
+jump8:
+blt t3,s3,jump9
+mv s3, t3
+
+jump9:
+blt t4,s3,jump10
+mv s3, t4
+
+jump10:
+#prints max value
+la a0, max_text
+print_string
+
+mv a0,s3
+print_int
+
+la a0, newline
+print_string
+
+
+
 ecall
 done:
 
