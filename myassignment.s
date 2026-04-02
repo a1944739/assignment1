@@ -59,19 +59,44 @@ print_string
 
 #checking which numbers are above 0
 
+#loads counter variable and 1 to integer register
 li s2, 1
 li s1, 0
+#if element 1 is less than 1, skip adding 1 to the counter
 blt t0, s2, jump2
 
 add s1,s1,s2
-mv a0, s1
-print_int
+
 ecall
 jump2: 
 
- 
+blt t1, s2, jump3
+add s1,s1,s2
 
- ecall
+ecall
+jump3: 
+
+blt t2, s2, jump4
+add s1,s1,s2
+
+ecall
+jump4: 
+
+blt t3, s2, jump5
+add s1,s1,s2
+
+ecall
+jump5: 
+
+blt t4, s2, jump6
+add s1,s1,s2
+
+ecall
+jump6:
+
+mv a0, s1
+print_int
+ecall
 done:
 
  li a7, 10
